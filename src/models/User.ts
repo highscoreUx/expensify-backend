@@ -1,6 +1,7 @@
 import { SchemaErrors } from "@/constants";
 import { TUser } from "@/utilities/Zod";
 import mongoose, { Document } from "mongoose";
+import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema<TUser & Document>({
 	firstName: {
@@ -18,6 +19,7 @@ const userSchema = new mongoose.Schema<TUser & Document>({
 		lowercase: true,
 		trim: true,
 		required: [true, `${SchemaErrors.email.requiredError}`],
+		unique: true,
 	},
 	password: {
 		type: String,
@@ -39,5 +41,20 @@ const userSchema = new mongoose.Schema<TUser & Document>({
 });
 
 userSchema.index({ email: 1, _id: 1 });
+
+userSchema.pre("save", async function () {
+	if (this.isNew || this.isModified("password")) {
+		const salt = await bcrypt.genSalt(10);
+		this.password = await bcrypt.hash(this.password, salt);
+	}
+});
+
+userSchema.set("toJSON", {
+	transform: (_doc, ret) => {
+		delete ret.password;
+		return ret;
+	},
+});
+
 const User = mongoose.model<TUser & Document>("User", userSchema);
 export default User;
