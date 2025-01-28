@@ -4,9 +4,9 @@ import { TUser } from "@/utilities/Zod";
 import { Model } from "mongoose";
 
 export class UserRepositoryImpl implements IUserRepository {
-	private model: Model<TUser>;
+	private model: Model<TUser & Document>;
 
-	constructor(model: Model<TUser>) {
+	constructor(model: Model<TUser & Document>) {
 		this.model = model;
 	}
 

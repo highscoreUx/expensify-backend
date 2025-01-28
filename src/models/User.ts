@@ -1,6 +1,6 @@
 import { SchemaErrors } from "@/constants";
 import { TUser } from "@/utilities/Zod";
-import mongoose, { Document } from "mongoose";
+import mongoose, { Document, Model } from "mongoose";
 import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema<TUser & Document>({
@@ -56,5 +56,8 @@ userSchema.set("toJSON", {
 	},
 });
 
-const User = mongoose.model<TUser & Document>("User", userSchema);
+const User: Model<TUser & Document> = mongoose.model<TUser & Document>(
+	"User",
+	userSchema,
+);
 export default User;
