@@ -25,4 +25,6 @@ export const httpStatus = {
 	internalServerError: 500,
 };
 
+export type THttpStatus = typeof httpStatus;
+
 export class ValidationError extends Error {}
