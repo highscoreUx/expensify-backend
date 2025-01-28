@@ -15,3 +15,12 @@ export const SchemaErrors = {
 		requiredError: "Please provide password",
 	},
 };
+
+export const httpStatus = {
+	created: 201,
+	ok: 200,
+	badRequest: 400,
+	forbidden: 403,
+	unauthorized: 401,
+	internalServerError: 500,
+};
