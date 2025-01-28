@@ -13,8 +13,8 @@ const userRepository = new UserRepositoryImpl(
 	User as unknown as Model<TUser & Document>,
 );
 const userService = new UserServiceImpl(userRepository);
-const { signUp } = new UserControllerImpl(userService, httpStatus);
+const userController = new UserControllerImpl(userService, httpStatus);
 
-router.post("/", signUp);
+router.post("/", userController.signUp);
 
 export default router;

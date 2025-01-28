@@ -12,7 +12,7 @@ export class UserControllerImpl implements IUserController {
 		this.httpStatus = httpStatus;
 	}
 
-	async signUp(req: Request, res: Response): Promise<void> {
+	signUp = async (req: Request, res: Response): Promise<void> => {
 		try {
 			const user = await this.userService.userSignUp(req.body);
 			res
@@ -27,5 +27,5 @@ export class UserControllerImpl implements IUserController {
 				.status(this.httpStatus.internalServerError)
 				.json({ msg: "internal server error" });
 		}
-	}
+	};
 }
