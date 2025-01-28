@@ -3,5 +3,8 @@ content-type: application/json
 
 {
   "firstName": "Hello",
-  "lastName": "world"
+  "lastName": "ws",
+  "password": "testing123"
+
+
 }

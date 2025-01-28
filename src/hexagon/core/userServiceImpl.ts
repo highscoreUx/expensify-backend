@@ -14,9 +14,7 @@ export class UserServiceImpl implements IUserService {
 		const { success, error, data: typedUser } = userSchema.safeParse(data);
 
 		if (!success) {
-			throw new ValidationError(
-				`Error signing up user : ${error.errors[0].message}`,
-			);
+			throw new ValidationError(`${error.errors[0].message}`);
 		}
 
 		const { role, ...rest } = typedUser;
@@ -32,9 +30,7 @@ export class UserServiceImpl implements IUserService {
 		} = userSchema.partial().safeParse(data);
 
 		if (!success) {
-			throw new ValidationError(
-				`error logging in user: ${error.errors[0].message}`,
-			);
+			throw new ValidationError(`${error.errors[0].message}`);
 		}
 
 		const { email } = ParsedData;
@@ -67,9 +63,7 @@ export class UserServiceImpl implements IUserService {
 		} = userSchema.partial().safeParse(data);
 
 		if (!success) {
-			throw new ValidationError(
-				`Error updating user profile : ${error.errors[0].message}`,
-			);
+			throw new ValidationError(`${error.errors[0].message}`);
 		}
 
 		return this.userRepository.updateUserByID(id, datum) as Promise<TUser>;

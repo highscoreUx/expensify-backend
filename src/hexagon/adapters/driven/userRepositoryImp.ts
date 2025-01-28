@@ -15,7 +15,7 @@ export class UserRepositoryImpl implements IUserRepository {
 			const createdUser = await this.model.create(data);
 			return createdUser;
 		} catch (error: any) {
-			throw new ValidationError(`Error creating user: ${error.message}`);
+			throw new ValidationError(` ${error.message}`);
 		}
 	}
 
@@ -30,9 +30,7 @@ export class UserRepositoryImpl implements IUserRepository {
 			}
 			return updatedUser;
 		} catch (error: any) {
-			throw new ValidationError(
-				`Error Updating user with ID: ${error.message}`,
-			);
+			throw new ValidationError(` ${error.message}`);
 		}
 	}
 
@@ -46,9 +44,7 @@ export class UserRepositoryImpl implements IUserRepository {
 			}
 			return updatedUser;
 		} catch (error: any) {
-			throw new ValidationError(
-				`Error Updating user with Email: ${error.message}`,
-			);
+			throw new ValidationError(`${error.message}`);
 		}
 	}
 
@@ -60,7 +56,7 @@ export class UserRepositoryImpl implements IUserRepository {
 
 			return users;
 		} catch (error: any) {
-			throw new ValidationError(`Error finding users: ${error.message}`);
+			throw new ValidationError(`${error.message}`);
 		}
 	}
 
@@ -72,9 +68,7 @@ export class UserRepositoryImpl implements IUserRepository {
 			}
 			return user;
 		} catch (error: any) {
-			throw new ValidationError(
-				`Error finding user by email: ${error.message}`,
-			);
+			throw new ValidationError(` ${error.message}`);
 		}
 	}
 
@@ -86,7 +80,7 @@ export class UserRepositoryImpl implements IUserRepository {
 			}
 			return user;
 		} catch (error: any) {
-			throw new ValidationError(`Error finding user by ID: ${error.message}`);
+			throw new ValidationError(`${error.message}`);
 		}
 	}
 
@@ -94,7 +88,7 @@ export class UserRepositoryImpl implements IUserRepository {
 		try {
 			await this.model.findByIdAndDelete(id);
 		} catch (error: any) {
-			throw new ValidationError(`Error deleting user: ${error.message}`);
+			throw new ValidationError(`${error.message}`);
 		}
 	}
 
@@ -106,7 +100,7 @@ export class UserRepositoryImpl implements IUserRepository {
 				},
 			});
 		} catch (error: any) {
-			throw new ValidationError(`Error deleting users: ${error.message}`);
+			throw new ValidationError(`${error.message}`);
 		}
 	}
 }
