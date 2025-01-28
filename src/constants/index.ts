@@ -24,3 +24,5 @@ export const httpStatus = {
 	unauthorized: 401,
 	internalServerError: 500,
 };
+
+export class ValidationError extends Error {}
