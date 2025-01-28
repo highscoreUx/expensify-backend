@@ -3,7 +3,7 @@ import { IUserRepository } from "../ports/driven/userRepository";
 import { IUserService } from "./userService";
 import { ValidationError } from "@/constants";
 
-export class UserService implements IUserService {
+export class UserServiceImpl implements IUserService {
 	private userRepository: IUserRepository;
 
 	constructor(userRepository: IUserRepository) {
