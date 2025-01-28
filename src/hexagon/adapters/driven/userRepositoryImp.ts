@@ -1,11 +1,17 @@
 import { IUserRepository } from "@/hexagon/ports/driven/userRepository";
-import User from "@/models/User";
 import { TUser } from "@/utilities/Zod";
+import { Model } from "mongoose";
 
 export class UserRepositoryImpl implements IUserRepository {
+	private model: Model<TUser>;
+
+	constructor(model: Model<TUser>) {
+		this.model = model;
+	}
+
 	async createUser(data: TUser) {
 		try {
-			const createdUser = await User.create(data);
+			const createdUser = await this.model.create(data);
 			return createdUser;
 		} catch (error: any) {
 			throw new Error(`Error creating user: ${error.message}`);
@@ -14,7 +20,9 @@ export class UserRepositoryImpl implements IUserRepository {
 
 	async updateUserByID(id: string, data: Partial<TUser>) {
 		try {
-			const createdUser = await User.findByIdAndUpdate(id, data, { new: true });
+			const createdUser = await this.model.findByIdAndUpdate(id, data, {
+				new: true,
+			});
 			return createdUser;
 		} catch (error: any) {
 			throw new Error(`Error Updating user with ID: ${error.message}`);
@@ -23,7 +31,7 @@ export class UserRepositoryImpl implements IUserRepository {
 
 	async updateUserByEmail(email: string, data: Partial<TUser>) {
 		try {
-			const createdUser = await User.findOneAndUpdate({ email }, data, {
+			const createdUser = await this.model.findOneAndUpdate({ email }, data, {
 				new: true,
 			});
 			return createdUser;
@@ -36,7 +44,7 @@ export class UserRepositoryImpl implements IUserRepository {
 		data: Omit<TUser, "password"> = {} as Omit<TUser, "password">,
 	) {
 		try {
-			const users = await User.find(data);
+			const users = await this.model.find(data);
 			return users;
 		} catch (error: any) {
 			throw new Error(`Error finding users: ${error.message}`);
@@ -45,7 +53,7 @@ export class UserRepositoryImpl implements IUserRepository {
 
 	async getUserByEmail(email: string) {
 		try {
-			const user = await User.findOne({ email });
+			const user = await this.model.findOne({ email });
 			return user;
 		} catch (error: any) {
 			throw new Error(`Error finding user by email: ${error.message}`);
@@ -54,7 +62,7 @@ export class UserRepositoryImpl implements IUserRepository {
 
 	async getUserById(id: string) {
 		try {
-			const user = await User.findById(id);
+			const user = await this.model.findById(id);
 			return user;
 		} catch (error: any) {
 			throw new Error(`Error finding user by ID: ${error.message}`);
@@ -63,7 +71,7 @@ export class UserRepositoryImpl implements IUserRepository {
 
 	async deleteUser(id: string) {
 		try {
-			await User.findByIdAndDelete(id);
+			await this.model.findByIdAndDelete(id);
 		} catch (error: any) {
 			throw new Error(`Error deleting user: ${error.message}`);
 		}
@@ -71,7 +79,7 @@ export class UserRepositoryImpl implements IUserRepository {
 
 	async deleteUsers(ids: string[]) {
 		try {
-			await User.deleteMany({
+			await this.model.deleteMany({
 				_id: {
 					$in: ids,
 				},
