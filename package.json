@@ -1,42 +1,43 @@
 {
-  "name": "expensify",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "dev": "tsx --watch src/server.ts",
-    "prepare": "husky",
-    "test": "jest"
-  },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@commitlint/cli": "^19.6.1",
-    "@commitlint/config-conventional": "^19.6.0",
-    "@eslint/js": "^9.19.0",
-    "@types/bcryptjs": "^2.4.6",
-    "@types/express": "^5.0.0",
-    "@types/node": "^22.10.10",
-    "eslint": "^9.19.0",
-    "globals": "^15.14.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.4.3",
-    "prettier": "3.4.2",
-    "typescript-eslint": "^8.22.0"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "helmet": "^8.0.0",
-    "ioredis": "^5.4.2",
-    "mongoose": "^8.9.5",
-    "winston": "^3.17.0",
-    "zod": "^3.24.1"
-  }
+	"name": "expensify",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"dev": "tsx --watch src/server.ts",
+		"prepare": "husky",
+		"test": "jest"
+	},
+	"lint-staged": {
+		"**/*": "prettier --write --ignore-unknown"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@commitlint/cli": "^19.6.1",
+		"@commitlint/config-conventional": "^19.6.0",
+		"@eslint/js": "^9.19.0",
+		"@jest/globals": "^29.7.0",
+		"@types/bcryptjs": "^2.4.6",
+		"@types/express": "^5.0.0",
+		"@types/node": "^22.10.10",
+		"eslint": "^9.19.0",
+		"globals": "^15.14.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^15.4.3",
+		"prettier": "3.4.2",
+		"typescript-eslint": "^8.22.0"
+	},
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"dotenv": "^16.4.7",
+		"express": "^4.21.2",
+		"helmet": "^8.0.0",
+		"ioredis": "^5.4.2",
+		"mongoose": "^8.9.5",
+		"winston": "^3.17.0",
+		"zod": "^3.24.1"
+	}
 }
