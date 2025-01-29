@@ -5,6 +5,4 @@ content-type: application/json
   "firstName": "Hello",
   "lastName": "ws",
   "password": "testing123"
-
-
 }
